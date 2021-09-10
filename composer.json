@@ -1,0 +1,14 @@
+{
+    "name": "me/todo-app",
+    "authors": [
+        {
+            "name" : "Emilie Thoreau",
+            "email" : "emilie.thoreau@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TodoApp\\": "src/"
+        }
+    }
+}
