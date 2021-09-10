@@ -11,11 +11,15 @@ $todos = $app->getAllTodos();
 // change state
 if (!empty($_POST)) {
     $data = $_POST;
+    $updateData = [];
     foreach ($data as $key => $value) {
-        $temp = Todo::getTodoById($value);
-        $todo = new Todo($temp['state'], $temp['title'], $temp['description'], $temp['createdDate'], $temp['id']);
-        $todo->setState();
+        $todo = $app->getTodoById($value); 
+        if ($todo->getState() === "new") {
+          $todo->setState("deleted");
+        }
+        $updateData[] = $todo;
     }
+    $todos = $app->updateTodoList($updateData);
 }
 
 
@@ -27,14 +31,32 @@ if (!empty($_POST)) {
 
   </head>
   <body>
-    <ul>
-      <?php 
-      // list all todos
-      foreach ($todos as $todo) {
-        ?><li><?php echo "[".$todo['state']."] " . $todo['title']; ?></li><?php
-        
-      }
-      ?>
-    </ul>
+    <form method="post" action="">
+      <ul>
+        <?php 
+        // list todos
+        foreach ($todos as $todo) {
+          if ($todo->getState() === "new") {
+            ?>
+            <li>
+              <input type="checkbox" value="<?php echo $todo->getId(); ?>" name="todo-<?php echo $todo->getId(); ?>"/>
+              <?php echo $todo->getTitle(); ?>
+            </li>
+            <?php
+            }
+          else if ($todo->getState() === "deleted") {
+            ?>
+            <li>
+              <input type="checkbox" value="<?php echo $todo->getId(); ?>" name="todo-<?php echo $todo->getId(); ?>" checked disabled />
+              <s><?php echo $todo->getTitle(); ?></s>
+            </li>
+            <?php
+            }  
+        }
+        ?>
+      </ul>
+      <input type="submit" value="Update" />
+    </form>
+    
   </body>
 </html>
