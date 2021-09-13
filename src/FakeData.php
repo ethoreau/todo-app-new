@@ -30,7 +30,7 @@ class FakeData {
      * @return $resp string when all's fine, false otherwise
      */
     public static function addTodo($data) {
-        if (is_array($data) && !empty($data)) {
+        if (is_array($data) && !empty($data) && !empty($data['title'])) {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, self::API_URL.'/todos');
             curl_setopt($ch, CURLOPT_POST, true);
@@ -43,10 +43,15 @@ class FakeData {
 
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 
-            $resp = curl_exec($ch);
+            $resp = json_decode(curl_exec($ch), true);
             curl_close($ch);
+
+            return (isset($resp) && is_array($resp)) ? $resp : false;
         }
-        return (isset($resp) && !empty($resp)) ? json_decode($resp, true) : false;
+        else {
+            return false;
+        }
+        
     }
 
     /**
@@ -58,10 +63,10 @@ class FakeData {
         curl_setopt($ch, CURLOPT_URL, self::API_URL.'/todos/'.$id);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $found = curl_exec($ch);
+        $found = json_decode(curl_exec($ch), true);
         curl_close($ch);
 
-        return (isset($found)) ? json_decode($found, true) : false;
+        return (!empty($found) && is_array($found)) ? $found : false;
     }
 
     /**
@@ -82,9 +87,9 @@ class FakeData {
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        $resp = curl_exec($ch);
+        $resp = json_decode(curl_exec($ch), true); 
         curl_close($ch);
 
-        return (!empty($resp)) ? $resp : false;
+        return (!empty($resp) && is_array($resp)) ? $resp : false;
     }
 }
