@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'a49ef62ece5bf1f455976b9b1d7a18e20269558d',
+        'reference' => '7aa1f988b763e9e7c51e860f9f1d3e16fd82bcd0',
         'name' => 'me/todo-app',
         'dev' => true,
     ),
@@ -34,7 +34,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'a49ef62ece5bf1f455976b9b1d7a18e20269558d',
+            'reference' => '7aa1f988b763e9e7c51e860f9f1d3e16fd82bcd0',
             'dev_requirement' => false,
         ),
         'myclabs/deep-copy' => array(
@@ -327,6 +327,21 @@
             'aliases' => array(),
             'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
             'dev_requirement' => false,
+        ),
+        'twbs/bootstrap' => array(
+            'pretty_version' => 'v5.1.1',
+            'version' => '5.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twbs/bootstrap',
+            'aliases' => array(),
+            'reference' => '0d81d3cbc14dfcdca8a868e3f25189a4f1ab273c',
+            'dev_requirement' => false,
+        ),
+        'twitter/bootstrap' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => 'v5.1.1',
+            ),
         ),
         'webmozart/assert' => array(
             'pretty_version' => '1.10.0',

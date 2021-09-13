@@ -1,6 +1,6 @@
-
-    <form method="post" action="">
-      <ul>
+<section class="col-md-6">
+<form method="post" action="">
+    <ul>
         <?php 
         // list todos
         foreach ($todos as $todo) {
@@ -24,8 +24,9 @@
             }  
         }
         ?>
-      </ul>
-      <input type="submit" value="Update" name="update"/>
-      <a href="?action=add-todo">Add a todo</a>
+    </ul>
+    <input type="submit" value="Update" name="update" class="btn btn-primary"/>
+    <a href="?action=add-todo" class="btn btn-success">Add a todo</a>
     </form>
+</section>
     

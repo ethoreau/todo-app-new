@@ -13,6 +13,7 @@
     },
     "require": {
         "curl/curl": "^2.3",
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+        "twbs/bootstrap": "5.1.1"
     }
 }

@@ -39,19 +39,26 @@ if (!empty($_POST)) {
 <!doctype html>
 <html>
   <head>
-
+    <title>TODO Application</title>
+    <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
   </head>
   <body>
-    <?php 
-    if (isset($_GET['todo-id']) && !empty($_GET['todo-id'])) {
-      include 'part/detail-todo.php';
-    }
-    else if (isset($_GET['action']) && $_GET['action'] === "add-todo") {
-      include 'part/add-todo.php';
-    }
-    else {
-      include 'part/all-todos.php';
-    }
-    ?>
+    <div class="container-fluid">
+      <h1>Todo Application</h1>
+
+      <?php 
+      if (isset($_GET['todo-id']) && !empty($_GET['todo-id'])) {
+        include 'part/detail-todo.php';
+      }
+      else if (isset($_GET['action']) && $_GET['action'] === "add-todo") {
+        include 'part/add-todo.php';
+      }
+      else {
+        include 'part/all-todos.php';
+      }
+      ?>
+    </div>
+    
+    
   </body>
 </html>
