@@ -27,8 +27,8 @@ class App {
      * Get a todo by its id
      */
     public function getTodoById($searchId) {
-        // $todo = FakeData::getTodoById($searchId);
-        return isset($this->todos[$searchId]) ? $this->todos[$searchId] : false;
+        $todo = FakeData::getTodoById($searchId);
+        return (isset($todo) && !empty($todo)) ? $todo : false;
     }
 
     public function getUpdatedList() {
@@ -44,7 +44,7 @@ class App {
         $new = [];
         foreach ($todos as $todo) {
             if (!$todo['deleted']) {
-                $new[] = $todo;
+                $new[$todo['id']] = $todo;
             }
         }
         return $new;
@@ -59,7 +59,7 @@ class App {
         $deleted = [];
         foreach ($todos as $todo) {
             if ($todo['deleted']) {
-                $deleted[] = $todo;
+                $deleted[$todo['id']] = $todo;
             }
         }
         return $deleted;

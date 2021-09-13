@@ -18,6 +18,7 @@ if (!empty($_POST)) {
 }
 
 
+
 ?>
 <!doctype html>
 <html>
@@ -25,34 +26,13 @@ if (!empty($_POST)) {
 
   </head>
   <body>
-    <form method="post" action="">
-      <ul>
-        <?php 
-        // list todos
-        foreach ($todos as $todo) {
-          if (!$todo['deleted']) {
-            // not crossed out todo
-            ?>
-            <li>
-              <input type="checkbox" value="<?php echo $todo['id']; ?>" name="todo-<?php echo $todo['id']; ?>"/>
-              <?php echo $todo['title']; ?>
-            </li>
-            <?php
-            }
-          else if ($todo['deleted']) {
-            // crossed out todo
-            ?>
-            <li>
-              <input type="checkbox" value="<?php echo $todo['id']; ?>" name="todo-<?php echo $todo['id']; ?>" checked disabled />
-              <s><?php echo $todo['title']; ?></s>
-            </li>
-            <?php
-            }  
-        }
-        ?>
-      </ul>
-      <input type="submit" value="Update" />
-    </form>
-    
+    <?php 
+    if (isset($_GET['todo-id']) && !empty($_GET['todo-id'])) {
+      include 'part/detail-todo.php';
+    }
+    else {
+      include 'part/all-todos.php';
+    }
+    ?>
   </body>
 </html>
