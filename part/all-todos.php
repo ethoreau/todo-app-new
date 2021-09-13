@@ -25,6 +25,7 @@
         }
         ?>
       </ul>
-      <input type="submit" value="Update" />
+      <input type="submit" value="Update" name="update"/>
+      <a href="?action=add-todo">Add a todo</a>
     </form>
     

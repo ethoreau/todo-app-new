@@ -14,9 +14,9 @@ class FakeData {
      * get all todos from mock api
      * @return array of all the todos
      */
-    public static function getData() {
+    public static function getData($sortby = "createdDate", $order = "desc") {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, self::API_URL.'/todos');
+        curl_setopt($ch, CURLOPT_URL, self::API_URL.'/todos?sortBy='.$sortby.'&order='.$order);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
         $data = curl_exec($ch);
@@ -46,7 +46,7 @@ class FakeData {
             $resp = curl_exec($ch);
             curl_close($ch);
         }
-        return (isset($resp) && !empty($resp)) ? $resp : false;
+        return (isset($resp) && !empty($resp)) ? json_decode($resp, true) : false;
     }
 
     /**
