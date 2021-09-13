@@ -3,25 +3,19 @@ require "vendor/autoload.php";
 
 use TodoApp\App;
 use TodoApp\Todo;
+use TodoApp\FakeData;
 
 $app = new App();
-// get all todos
-$todos = $app->getAllTodos();
+$todos = $app->getTodos();
 
 // change state
 if (!empty($_POST)) {
     $data = $_POST;
-    $updateData = [];
     foreach ($data as $key => $value) {
-        $todo = $app->getTodoById($value); 
-        if ($todo->getState() === "new") {
-          $todo->setState("deleted");
-        }
-        $updateData[] = $todo;
+        $app->deleteTodo($value);
     }
-    $todos = $app->updateTodoList($updateData);
+    $todos = $app->getUpdatedList();
 }
-
 
 
 ?>
@@ -36,19 +30,21 @@ if (!empty($_POST)) {
         <?php 
         // list todos
         foreach ($todos as $todo) {
-          if ($todo->getState() === "new") {
+          if (!$todo['deleted']) {
+            // not crossed out todo
             ?>
             <li>
-              <input type="checkbox" value="<?php echo $todo->getId(); ?>" name="todo-<?php echo $todo->getId(); ?>"/>
-              <?php echo $todo->getTitle(); ?>
+              <input type="checkbox" value="<?php echo $todo['id']; ?>" name="todo-<?php echo $todo['id']; ?>"/>
+              <?php echo $todo['title']; ?>
             </li>
             <?php
             }
-          else if ($todo->getState() === "deleted") {
+          else if ($todo['deleted']) {
+            // crossed out todo
             ?>
             <li>
-              <input type="checkbox" value="<?php echo $todo->getId(); ?>" name="todo-<?php echo $todo->getId(); ?>" checked disabled />
-              <s><?php echo $todo->getTitle(); ?></s>
+              <input type="checkbox" value="<?php echo $todo['id']; ?>" name="todo-<?php echo $todo['id']; ?>" checked disabled />
+              <s><?php echo $todo['title']; ?></s>
             </li>
             <?php
             }  

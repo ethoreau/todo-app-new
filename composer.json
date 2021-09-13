@@ -10,5 +10,8 @@
         "psr-4": {
             "TodoApp\\": "src/"
         }
+    },
+    "require": {
+        "curl/curl": "^2.3"
     }
 }
