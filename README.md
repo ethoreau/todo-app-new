@@ -9,8 +9,8 @@ New simply todo application
 4. Add a new TODO : by clicking the add button at the bottom of the list, you can fill a form in a dedicated view to add a todo. Only 2 fields : title (which is required) and description.
 
 # Technical environment
-- Made with PHP, Bootstrap for UI, 
-- Code covered by unit tests
+- Made with PHP, Bootstrap for UI
+- Code covered by unit tests (PHP Unit)
 - Github pages : if I understood correctly, Github Pages doesn't support PHP, it's only for static code. So I didn't manage to set it up.
 - Mocked backend with Mock API (https://mockapi.io/)
 
